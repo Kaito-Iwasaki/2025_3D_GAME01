@@ -54,9 +54,7 @@ LPD3DXMESH g_pMeshPlayer = NULL;			// メッシュ（頂点情報）へのポインタ
 LPDIRECT3DTEXTURE9 g_apTexturePlayer[MAX_TEXTURE] = {};
 LPD3DXBUFFER g_pBuffMatPlayer = NULL;	// マテリアルへのポインタ
 DWORD g_dwNumMatPlayer = 0;				// マテリアル数
-BASEOBJECT g_objPlayer;
-D3DXMATRIX g_mtxWorldPlayer;	// ワールドマトリックス
-int g_nIdxShadowPlayer = -1;
+PLAYER g_player;
 
 //=====================================================================
 // 初期化処理
@@ -65,8 +63,8 @@ void InitPlayer(void)
 {
 	LPDIRECT3DDEVICE9 pDevice = GetDevice();
 
-	memset(&g_objPlayer, 0, sizeof(BASEOBJECT));
-	g_objPlayer.bVisible = true;
+	memset(&g_player, 0, sizeof(PLAYER));
+	g_player.obj.bVisible = true;
 
 	// Xファイルの読み込み
 	D3DXLoadMeshFromX(
@@ -98,7 +96,7 @@ void InitPlayer(void)
 		}
 	}
 
-	g_nIdxShadowPlayer = SetShadow();
+	g_player.nIdxShadow = SetShadow();
 }
 
 //=====================================================================
@@ -138,25 +136,23 @@ void UpdatePlayer(void)
 	static D3DXVECTOR3 move = D3DXVECTOR3_ZERO;
 	D3DXVECTOR3 dir = D3DXVECTOR3_ZERO;
 
+	g_player.posOld = g_player.obj.pos;
+
 	if (GetKeyboardPress(DIK_LEFT))
 	{
-		dir -= D3DXVECTOR3(cosf(pCamera->rot.y), 0.0f, -sinf(pCamera->rot.y)) * 5.0f;
-		g_objPlayer.rot.y = D3DX_PI * 0.5f + pCamera->rot.y;
+		dir -= D3DXVECTOR3(cosf(pCamera->rot.y), 0.0f, -sinf(pCamera->rot.y)) * 1.0f;
 	}
 	if (GetKeyboardPress(DIK_RIGHT))
 	{
-		dir += D3DXVECTOR3(cosf(pCamera->rot.y), 0.0f, -sinf(pCamera->rot.y)) * 5.0f;
-		g_objPlayer.rot.y = -D3DX_PI * 0.5f + pCamera->rot.y;
+		dir += D3DXVECTOR3(cosf(pCamera->rot.y), 0.0f, -sinf(pCamera->rot.y)) * 1.0f;
 	}
 	if (GetKeyboardPress(DIK_UP))
 	{
-		dir += D3DXVECTOR3(sinf(pCamera->rot.y), 0.0f, cosf(pCamera->rot.y)) * 5.0f;
-		g_objPlayer.rot.y = D3DX_PI + pCamera->rot.y;
+		dir += D3DXVECTOR3(sinf(pCamera->rot.y), 0.0f, cosf(pCamera->rot.y)) * 1.0f;
 	}
 	if (GetKeyboardPress(DIK_DOWN))
 	{
-		dir -= D3DXVECTOR3(sinf(pCamera->rot.y), 0.0f, cosf(pCamera->rot.y)) * 5.0f;
-		g_objPlayer.rot.y = 0 + pCamera->rot.y;
+		dir -= D3DXVECTOR3(sinf(pCamera->rot.y), 0.0f, cosf(pCamera->rot.y)) * 1.0f;
 	}
 
 	if (GetKeyboardTrigger(DIK_SPACE))
@@ -164,13 +160,19 @@ void UpdatePlayer(void)
 		move.y = 10.0f;
 	}
 
-	g_objPlayer.pos += dir + move;
-	move.y -= 0.6f;
-	Clampf(&g_objPlayer.pos.y, 0.0f, g_objPlayer.pos.y);
+	g_player.obj.pos += dir + move;
 
-	SetShadowPosition(g_nIdxShadowPlayer, D3DXVECTOR3(g_objPlayer.pos.x, 0.0f, g_objPlayer.pos.z));
-	SetShadowSize(g_nIdxShadowPlayer, D3DXVECTOR3(100.0f, 0.01f, 100.0f) * (g_objPlayer.pos.y + 1) * 0.0025f);
-	SetShadowAlpha(g_nIdxShadowPlayer, 1.0f);
+	if (sqrtf(dir.x * dir.x + dir.z * dir.z))
+	{
+		g_player.obj.rot.y = atan2f(dir.x, dir.z) + D3DX_PI;
+	}
+
+	move.y -= 0.6f;
+	Clampf(&g_player.obj.pos.y, 0.0f, g_player.obj.pos.y);
+
+	SetShadowPosition(g_player.nIdxShadow, D3DXVECTOR3(g_player.obj.pos.x, 0.0f, g_player.obj.pos.z));
+	SetShadowSize(g_player.nIdxShadow, D3DXVECTOR3(100.0f, 0.01f, 100.0f) * (g_player.obj.pos.y + 1) * 0.0025f);
+	SetShadowAlpha(g_player.nIdxShadow, 1.0f);
 }
 
 //=====================================================================
@@ -184,32 +186,32 @@ void DrawPlayer(void)
 	D3DXMATERIAL* pMat;				// マテリアルデータへのポインタ
 
 	// ワールドマトリックスの初期化
-	D3DXMatrixIdentity(&g_mtxWorldPlayer);
+	D3DXMatrixIdentity(&g_player.mtxWorld);
 
 	// 向きを反映
 	D3DXMatrixRotationYawPitchRoll(
 		&mtxRot,
-		g_objPlayer.rot.y, g_objPlayer.rot.x, g_objPlayer.rot.z
+		g_player.obj.rot.y, g_player.obj.rot.x, g_player.obj.rot.z
 	);
 	D3DXMatrixMultiply(
-		&g_mtxWorldPlayer,
-		&g_mtxWorldPlayer,
+		&g_player.mtxWorld,
+		&g_player.mtxWorld,
 		&mtxRot
 	);
 
 	// 位置を反映
 	D3DXMatrixTranslation(
 		&mtxTrans,
-		g_objPlayer.pos.x, g_objPlayer.pos.y, g_objPlayer.pos.z
+		g_player.obj.pos.x, g_player.obj.pos.y, g_player.obj.pos.z
 	);
 	D3DXMatrixMultiply(
-		&g_mtxWorldPlayer,
-		&g_mtxWorldPlayer,
+		&g_player.mtxWorld,
+		&g_player.mtxWorld,
 		&mtxTrans
 	);
 
 	// ワールドマトリックスの設定
-	pDevice->SetTransform(D3DTS_WORLD, &g_mtxWorldPlayer);
+	pDevice->SetTransform(D3DTS_WORLD, &g_player.mtxWorld);
 
 	// 現在のマテリアルを取得
 	pDevice->GetMaterial(&matDef);

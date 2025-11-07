@@ -19,7 +19,7 @@
 // 
 //*********************************************************************
 #define TEXTURE_FILENAME	"data\\TEXTURE\\wall000.jpg"
-#define INIT_POS			D3DXVECTOR3(0.0f, 0.0f, 100.0f)
+#define INIT_POS			D3DXVECTOR3(0.0f, 0.0f, 200.0f)
 #define INIT_SIZE			D3DXVECTOR3(200.0f, 100.0f, 0.0f)
 #define INIT_COLOR			D3DXCOLOR_WHITE
 
@@ -101,24 +101,24 @@ void InitWall(void)
 	{
 		// 頂点情報を設定
 		pVtx[0].pos = D3DXVECTOR3(
-			pWall->obj.pos.x - cosf(pWall->obj.rot.y) * pWall->obj.size.x,
-			pWall->obj.pos.y + pWall->obj.size.y,
-			pWall->obj.pos.z - sinf(pWall->obj.rot.y) * pWall->obj.size.z
+			-pWall->obj.size.x,
+			pWall->obj.size.y,
+			0.0f
 		);
 		pVtx[1].pos = D3DXVECTOR3(
-			pWall->obj.pos.x + cosf(pWall->obj.rot.y) * pWall->obj.size.x,
-			pWall->obj.pos.y + pWall->obj.size.y,
-			pWall->obj.pos.z + sinf(pWall->obj.rot.y) * pWall->obj.size.z
+			pWall->obj.size.x,
+			pWall->obj.size.y,
+			0.0f
 		);
 		pVtx[2].pos = D3DXVECTOR3(
-			pWall->obj.pos.x - cosf(pWall->obj.rot.y) * pWall->obj.size.x,
+			-pWall->obj.size.x,
 			pWall->obj.pos.y,
-			pWall->obj.pos.z - sinf(pWall->obj.rot.y) * pWall->obj.size.z
+			0.0f
 		);
 		pVtx[3].pos = D3DXVECTOR3(
-			pWall->obj.pos.x + cosf(pWall->obj.rot.y) * pWall->obj.size.x,
+			pWall->obj.size.x,
 			pWall->obj.pos.y,
-			pWall->obj.pos.z + sinf(pWall->obj.rot.y) * pWall->obj.size.z
+			0.0f
 		);
 
 		pVtx[0].nor = D3DXVECTOR3(0.0f, 0.0f, -1.0f);
@@ -135,7 +135,6 @@ void InitWall(void)
 		pVtx[1].tex = D3DXVECTOR2(1.0f, 0.0f);
 		pVtx[2].tex = D3DXVECTOR2(0.0f, 1.0f);
 		pVtx[3].tex = D3DXVECTOR2(1.0f, 1.0f);
-
 	}
 
 	// 頂点バッファをアンロック
