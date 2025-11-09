@@ -66,8 +66,8 @@ void InitWall(void)
 	for (int i = 0; i < MAX_WALL; i++, pWall++)
 	{
 		pWall->obj.size = INIT_SIZE;
-		//pWall->obj.rot.y = D3DX_PI;
-		pWall->obj.pos = INIT_POS;
+		pWall->obj.rot.y = D3DX_PI * 0.5f * i;
+		pWall->obj.pos = D3DXVECTOR3(sinf(pWall->obj.rot.y), 0.0f, cosf(pWall->obj.rot.y)) * 200.0f;
 		pWall->obj.color = INIT_COLOR;
 		pWall->obj.bVisible = true;
 	}

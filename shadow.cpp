@@ -21,7 +21,7 @@
 #define TEXTURE_FILENAME	"data\\TEXTURE\\shadow000.jpg"
 #define INIT_POS			D3DXVECTOR3(0.0f, 0.0f, 0.0f)
 #define INIT_SIZE			D3DXVECTOR3(10.0f, 0.0f, 10.0f)
-#define INIT_COLOR			D3DXCOLOR(0.0f, 0.0f, 0.0f, 1.0f)
+#define INIT_COLOR			D3DXCOLOR(1.0f, 1.0f, 1.0f, 0.5f)
 
 //*********************************************************************
 // 
@@ -110,10 +110,10 @@ void InitShadow(void)
 		pVtx[2].nor = D3DXVECTOR3(0.0f, 1.0f, 0.0f);
 		pVtx[3].nor = D3DXVECTOR3(0.0f, 1.0f, 0.0f);
 
-		pVtx[0].col = D3DXCOLOR_WHITE;
-		pVtx[1].col = D3DXCOLOR_WHITE;
-		pVtx[2].col = D3DXCOLOR_WHITE;
-		pVtx[3].col = D3DXCOLOR_WHITE;
+		pVtx[0].col = INIT_COLOR;
+		pVtx[1].col = INIT_COLOR;
+		pVtx[2].col = INIT_COLOR;
+		pVtx[3].col = INIT_COLOR;
 
 		pVtx[0].tex = D3DXVECTOR2(0.0f, 0.0f);
 		pVtx[1].tex = D3DXVECTOR2(1.0f, 0.0f);
@@ -161,6 +161,11 @@ void UpdateShadow(void)
 		pVtx[1].pos = D3DXVECTOR3(+pShadow->obj.size.x, 0.0f, +pShadow->obj.size.z);
 		pVtx[2].pos = D3DXVECTOR3(-pShadow->obj.size.x, 0.0f, -pShadow->obj.size.z);
 		pVtx[3].pos = D3DXVECTOR3(+pShadow->obj.size.x, 0.0f, -pShadow->obj.size.z);
+
+		pVtx[0].col = pShadow->obj.color;
+		pVtx[1].col = pShadow->obj.color;
+		pVtx[2].col = pShadow->obj.color;
+		pVtx[3].col = pShadow->obj.color;
 	}
 
 	// 頂点バッファをアンロック
@@ -262,9 +267,9 @@ void SetShadowSize(int nIdxShadow, D3DXVECTOR3 size)
 	if (g_aShadow[nIdxShadow].bUsed == false) return;
 
 	g_aShadow[nIdxShadow].obj.size = D3DXVECTOR3(
-		Clampf(size.x, 10.0f, 50.0f),
+		size.x,
 		0.0f,
-		Clampf(size.z, 10.0f, 50.0f)
+		size.z
 	);
 }
 

@@ -164,15 +164,37 @@ void UpdatePlayer(void)
 
 	if (sqrtf(dir.x * dir.x + dir.z * dir.z))
 	{
-		g_player.obj.rot.y = atan2f(dir.x, dir.z) + D3DX_PI;
+		g_player.rotMove.y = atan2f(dir.x, dir.z) + D3DX_PI;
+	}
+
+	float fRotDiff = g_player.rotMove.y - g_player.obj.rot.y;
+
+	if (fRotDiff > D3DX_PI)
+	{
+		fRotDiff -= D3DX_PI * 2;
+	}
+	else if (fRotDiff < -D3DX_PI)
+	{
+		fRotDiff += D3DX_PI * 2;
+	}
+
+	g_player.obj.rot.y += fRotDiff * 0.1f;
+
+	if (g_player.obj.rot.y > D3DX_PI)
+	{
+		g_player.obj.rot.y -= D3DX_PI * 2;
+	}
+	else if (g_player.obj.rot.y < -D3DX_PI)
+	{
+		g_player.obj.rot.y += D3DX_PI * 2;
 	}
 
 	move.y -= 0.6f;
 	Clampf(&g_player.obj.pos.y, 0.0f, g_player.obj.pos.y);
 
-	SetShadowPosition(g_player.nIdxShadow, D3DXVECTOR3(g_player.obj.pos.x, 0.0f, g_player.obj.pos.z));
-	SetShadowSize(g_player.nIdxShadow, D3DXVECTOR3(100.0f, 0.01f, 100.0f) * (g_player.obj.pos.y + 1) * 0.0025f);
-	SetShadowAlpha(g_player.nIdxShadow, 1.0f);
+	SetShadowPosition(g_player.nIdxShadow, D3DXVECTOR3(g_player.obj.pos.x, 0.01f, g_player.obj.pos.z));
+	SetShadowSize(g_player.nIdxShadow, D3DXVECTOR3(10.0f, 0.01f, 10.0f) + D3DXVECTOR3(g_player.obj.pos.y * 0.03f, 0.0f, g_player.obj.pos.y * 0.03f));
+	SetShadowAlpha(g_player.nIdxShadow, Clampf(0.5f - g_player.obj.pos.y * 0.001f, 0.0f, 0.5f));
 }
 
 //=====================================================================
