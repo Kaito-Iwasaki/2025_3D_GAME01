@@ -167,27 +167,9 @@ void UpdatePlayer(void)
 		g_player.rotMove.y = atan2f(dir.x, dir.z) + D3DX_PI;
 	}
 
-	float fRotDiff = g_player.rotMove.y - g_player.obj.rot.y;
+	float fRotDiff = GetFixedRotation(g_player.rotMove.y - g_player.obj.rot.y);
 
-	if (fRotDiff > D3DX_PI)
-	{
-		fRotDiff -= D3DX_PI * 2;
-	}
-	else if (fRotDiff < -D3DX_PI)
-	{
-		fRotDiff += D3DX_PI * 2;
-	}
-
-	g_player.obj.rot.y += fRotDiff * 0.1f;
-
-	if (g_player.obj.rot.y > D3DX_PI)
-	{
-		g_player.obj.rot.y -= D3DX_PI * 2;
-	}
-	else if (g_player.obj.rot.y < -D3DX_PI)
-	{
-		g_player.obj.rot.y += D3DX_PI * 2;
-	}
+	g_player.obj.rot.y = GetFixedRotation(g_player.obj.rot.y + fRotDiff * 0.1f);
 
 	move.y -= 0.6f;
 	Clampf(&g_player.obj.pos.y, 0.0f, g_player.obj.pos.y);

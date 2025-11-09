@@ -144,11 +144,28 @@ float Magnitude(D3DXVECTOR3 from, D3DXVECTOR3 to)
 }
 
 //=====================================================================
-// ベクトルから別のベクトルまでの角度を求める処理
+// 二つの線の角度を求める処理
 //=====================================================================
-float Angle(D3DXVECTOR3 from, D3DXVECTOR3 to)
+float Angle(float fromX, float fromY, float toX, float toY)
 {
-	return atan2f(to.x - from.x, to.y - from.y);
+	return atan2f(toX - fromX, toY - fromY);
+}
+
+//=====================================================================
+// 二つの線の角度を求める処理
+//=====================================================================
+float GetFixedRotation(float fRot)
+{
+	if (fRot > D3DX_PI)
+	{
+		fRot -= D3DX_PI * 2;
+	}
+	else if (fRot < -D3DX_PI)
+	{
+		fRot += D3DX_PI * 2;
+	}
+
+	return fRot;
 }
 
 //=====================================================================
