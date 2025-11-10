@@ -200,17 +200,23 @@ void UpdateCamera(void)
 	{
 		DIMOUSESTATE mouse = GetMouse();
 
-		g_camera.rot.y += mouse.lX * 0.01f;
-		g_camera.posV.x = g_camera.posR.x + sinf(g_camera.rot.y + D3DX_PI) * g_camera.fDistanceFromVToR;
-		g_camera.posV.z = g_camera.posR.z + cosf(g_camera.rot.y + D3DX_PI) * g_camera.fDistanceFromVToR;
+		g_camera.rot.y = GetFixedRotation(g_camera.rot.y + mouse.lX * 0.01f);
+		g_camera.rot.x = Clampf(GetFixedRotation(g_camera.rot.x + mouse.lY * 0.01f), -D3DX_PI / 2 + 0.1f, D3DX_PI / 2 - 0.1f);
+
+		g_camera.posV.x = g_camera.posR.x + cosf(g_camera.rot.x) * sinf(g_camera.rot.y + D3DX_PI) * g_camera.fDistanceFromVToR;
+		g_camera.posV.z = g_camera.posR.z + cosf(g_camera.rot.x) * cosf(g_camera.rot.y + D3DX_PI) * g_camera.fDistanceFromVToR;
+		g_camera.posV.y = g_camera.posR.y + sinf(g_camera.rot.x) * g_camera.fDistanceFromVToR;
 	}
 	if (GetMousePress(MOUSE_RIGHT))
 	{
 		DIMOUSESTATE mouse = GetMouse();
 
-		g_camera.rot.y += mouse.lX * 0.01f;
-		g_camera.posR.x = g_camera.posV.x + sinf(g_camera.rot.y) * g_camera.fDistanceFromVToR;
-		g_camera.posR.z = g_camera.posV.z + cosf(g_camera.rot.y) * g_camera.fDistanceFromVToR;
+		g_camera.rot.y = GetFixedRotation(g_camera.rot.y + mouse.lX * 0.01f);
+		g_camera.rot.x = Clampf(GetFixedRotation(g_camera.rot.x + mouse.lY * 0.01f), -D3DX_PI / 2 + 0.1f, D3DX_PI / 2 - 0.1f);
+
+		g_camera.posR.x = g_camera.posV.x + cosf(g_camera.rot.x + D3DX_PI) * sinf(g_camera.rot.y + D3DX_PI) * g_camera.fDistanceFromVToR;
+		g_camera.posR.z = g_camera.posV.z + cosf(g_camera.rot.x + D3DX_PI) * cosf(g_camera.rot.y + D3DX_PI) * g_camera.fDistanceFromVToR;
+		g_camera.posR.y = g_camera.posV.y + sinf(g_camera.rot.x + D3DX_PI) * g_camera.fDistanceFromVToR;
 	}
 
 	if (GetKeyboardPress(DIK_RETURN))
