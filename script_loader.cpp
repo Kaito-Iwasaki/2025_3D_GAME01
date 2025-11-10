@@ -50,7 +50,7 @@ void LoadScript(const char* pFileName)
 
 	if (pFile != NULL)
 	{
-		char aStrLine[MAX_READABLE_CHAR];
+		char aStrLine[MAX_READABLE_CHAR] = {};
 
 		while (true)
 		{
@@ -62,6 +62,7 @@ void LoadScript(const char* pFileName)
 			if (strcmp(&aStrLine[0], "SCRIPT") == 0)
 			{
 				OutputDebugString("[script_loader.cpp] Script Start\n");
+				_Read_SCRIPT(pFile);
 			}
 			
 		}
@@ -73,4 +74,30 @@ void LoadScript(const char* pFileName)
 	{
 		OutputDebugString("[script_loader.cpp] Script Failed\n");
 	}
+}
+
+void _Read_SCRIPT(FILE* pFile)
+{
+	char aStrLine[MAX_READABLE_CHAR] = {};
+
+	int num = 0;
+
+	while (true)
+	{
+		if (fscanf(pFile, "%s", &aStrLine[0]) == EOF)
+		{
+			break;
+		}
+
+		if (strcmp(&aStrLine[0], "NUM_MODEL") == 0)
+		{
+			fscanf(pFile, " = %d", &num);
+		}
+		else if (strcmp(&aStrLine[0], "MODEL_FILENAME") == 0)
+		{
+
+		}
+	}
+
+
 }
