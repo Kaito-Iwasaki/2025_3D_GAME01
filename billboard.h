@@ -1,11 +1,11 @@
 //=====================================================================
 //
-// shadow.cppのヘッダファイル [shadow.h]
+// billboard.cppのヘッダファイル [billboard.h]
 // Author : 
 // 
 //=====================================================================
-#ifndef _SHADOW_H_
-#define _SHADOW_H_
+#ifndef _BILLBOARD_H_
+#define _BILLBOARD_H_
 
 //*********************************************************************
 // 
@@ -21,19 +21,17 @@
 // ***** マクロ定義 *****
 // 
 //*********************************************************************
-#define MAX_SHADOW		(1024)
+
 
 //*********************************************************************
 // 
 // ***** 構造体 *****
 // 
 //*********************************************************************
-typedef struct SHADOW
+typedef struct
 {
 	BASEOBJECT obj;
-	D3DXMATRIX mtxWorld;
-	bool bUsed;
-}SHADOW;
+}BILLBOARD;
 
 //*********************************************************************
 // 
@@ -47,14 +45,9 @@ typedef struct SHADOW
 // ***** プロトタイプ宣言 *****
 // 
 //*********************************************************************
-void InitShadow(void);
-void UninitShadow(void);
-void UpdateShadow(void);
-void DrawShadow(void);
-int SetShadow(void);
-void SetShadowPosition(int nIdxShadow, D3DXVECTOR3 pos);
-void SetShadowSize(int nIdxShadow, D3DXVECTOR3 size);
-void SetShadowAlpha(int nIdxShadow, float alpha);
-void RemoveShadow(int nIdxShadow);
+void InitBillboard(void);
+void UninitBillboard(void);
+void UpdateBillboard(void);
+void DrawBillboard(void);
 
 #endif

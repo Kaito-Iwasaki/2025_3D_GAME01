@@ -1,11 +1,11 @@
 //=====================================================================
 //
-// shadow.cppのヘッダファイル [shadow.h]
+// explosion.cppのヘッダファイル [explosion.h]
 // Author : 
 // 
 //=====================================================================
-#ifndef _SHADOW_H_
-#define _SHADOW_H_
+#ifndef _EXPLOSION_H_
+#define _EXPLOSION_H_
 
 //*********************************************************************
 // 
@@ -21,19 +21,22 @@
 // ***** マクロ定義 *****
 // 
 //*********************************************************************
-#define MAX_SHADOW		(1024)
+#define MAX_EXPLOSION	(256)
 
 //*********************************************************************
 // 
 // ***** 構造体 *****
 // 
 //*********************************************************************
-typedef struct SHADOW
+typedef struct
 {
 	BASEOBJECT obj;
 	D3DXMATRIX mtxWorld;
+	D3DXVECTOR3 move;
+	int nCounterState;
+	int nPatternAnim;
 	bool bUsed;
-}SHADOW;
+}EXPLOSION;
 
 //*********************************************************************
 // 
@@ -47,14 +50,10 @@ typedef struct SHADOW
 // ***** プロトタイプ宣言 *****
 // 
 //*********************************************************************
-void InitShadow(void);
-void UninitShadow(void);
-void UpdateShadow(void);
-void DrawShadow(void);
-int SetShadow(void);
-void SetShadowPosition(int nIdxShadow, D3DXVECTOR3 pos);
-void SetShadowSize(int nIdxShadow, D3DXVECTOR3 size);
-void SetShadowAlpha(int nIdxShadow, float alpha);
-void RemoveShadow(int nIdxShadow);
+void InitExplosion(void);
+void UninitExplosion(void);
+void UpdateExplosion(void);
+void DrawExplosion(void);
+void SetExplosion(D3DXVECTOR3 pos, D3DXVECTOR3 move);
 
 #endif

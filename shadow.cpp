@@ -156,6 +156,8 @@ void UpdateShadow(void)
 
 	for (int i = 0; i < MAX_SHADOW; i++, pShadow++, pVtx += 4)
 	{
+		if (pShadow->bUsed == false) continue;
+
 		// ’¸“_î•ñ‚ðÝ’è
 		pVtx[0].pos = D3DXVECTOR3(-pShadow->obj.size.x, 0.0f, +pShadow->obj.size.z);
 		pVtx[1].pos = D3DXVECTOR3(+pShadow->obj.size.x, 0.0f, +pShadow->obj.size.z);
@@ -244,7 +246,10 @@ int SetShadow(void)
 	{
 		if (g_aShadow[nCntShadow].bUsed == false)
 		{
+			memset(&g_aShadow[nCntShadow], 0, sizeof(SHADOW));
 			g_aShadow[nCntShadow].bUsed = true;
+			g_aShadow[nCntShadow].obj.size = INIT_SIZE;
+			g_aShadow[nCntShadow].obj.color = INIT_COLOR;
 			g_aShadow[nCntShadow].obj.bVisible = true;
 			return nCntShadow;
 		}
@@ -279,4 +284,12 @@ void SetShadowAlpha(int nIdxShadow, float alpha)
 	if (g_aShadow[nIdxShadow].bUsed == false) return;
 
 	g_aShadow[nIdxShadow].obj.color.a = alpha;
+}
+
+void RemoveShadow(int nIdxShadow)
+{
+	if (nIdxShadow == -1) return;
+	if (g_aShadow[nIdxShadow].bUsed == false) return;
+
+	g_aShadow[nIdxShadow].bUsed = false;
 }

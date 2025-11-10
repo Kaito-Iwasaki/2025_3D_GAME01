@@ -146,7 +146,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="baseObject.cpp" />
+    <ClCompile Include="bullet.cpp" />
     <ClCompile Include="camera.cpp" />
+    <ClCompile Include="explosion.cpp" />
     <ClCompile Include="fade.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="input.cpp" />
@@ -155,14 +157,20 @@
     <ClCompile Include="player.cpp" />
     <ClCompile Include="field.cpp" />
     <ClCompile Include="scene.cpp" />
+    <ClCompile Include="script_loader.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="shadow.cpp" />
     <ClCompile Include="sound.cpp" />
     <ClCompile Include="util.cpp" />
     <ClCompile Include="wall.cpp" />
+    <ClCompile Include="billboard.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="baseObject.h" />
     <ClInclude Include="camera.h" />
+    <ClInclude Include="explosion.h" />
     <ClInclude Include="fade.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="input.h" />
@@ -171,10 +179,19 @@
     <ClInclude Include="player.h" />
     <ClInclude Include="field.h" />
     <ClInclude Include="scene.h" />
+    <ClInclude Include="script_loader.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="shadow.h" />
     <ClInclude Include="sound.h" />
+    <ClInclude Include="bullet.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="util.h" />
     <ClInclude Include="wall.h" />
+    <ClInclude Include="billboard.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

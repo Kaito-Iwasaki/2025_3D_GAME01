@@ -15,6 +15,10 @@
 #include "player.h"
 #include "shadow.h"
 #include "wall.h"
+#include "script_loader.h"
+#include "billboard.h"
+#include "bullet.h"
+#include "explosion.h"
 
 //*********************************************************************
 // 
@@ -60,7 +64,11 @@ void InitGame(void)
 	InitWall();
 	InitShadow();
 	InitPlayer();
+	InitBillboard();
+	InitBullet();
+	InitExplosion();
 
+	LoadScript("data\\model.txt");
 }
 
 //=====================================================================
@@ -72,6 +80,9 @@ void UninitGame(void)
 	UninitWall();
 	UninitPlayer();
 	UninitShadow();
+	UninitBillboard();
+	UninitBullet();
+	UninitExplosion();
 }
 
 //=====================================================================
@@ -83,6 +94,9 @@ void UpdateGame(void)
 	UpdateWall();
 	UpdatePlayer();
 	UpdateShadow();
+	UpdateBillboard();
+	UpdateBullet();
+	UpdateExplosion();
 }
 
 //=====================================================================
@@ -94,4 +108,7 @@ void DrawGame(void)
 	DrawWall();
 	DrawPlayer();
 	DrawShadow();
+	DrawBillboard();
+	DrawBullet();
+	DrawExplosion();
 }

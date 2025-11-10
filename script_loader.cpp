@@ -1,39 +1,30 @@
 //=====================================================================
 //
-// shadow.cppのヘッダファイル [shadow.h]
+// script_loader [script_loader.cpp]
 // Author : 
 // 
 //=====================================================================
-#ifndef _SHADOW_H_
-#define _SHADOW_H_
 
 //*********************************************************************
 // 
 // ***** インクルードファイル *****
 // 
 //*********************************************************************
-#include "main.h"
-#include "baseObject.h"
-#include "util.h"
+#include "script_loader.h"
 
 //*********************************************************************
 // 
 // ***** マクロ定義 *****
 // 
 //*********************************************************************
-#define MAX_SHADOW		(1024)
+#define MAX_READABLE_CHAR	(256)
 
 //*********************************************************************
 // 
 // ***** 構造体 *****
 // 
 //*********************************************************************
-typedef struct SHADOW
-{
-	BASEOBJECT obj;
-	D3DXMATRIX mtxWorld;
-	bool bUsed;
-}SHADOW;
+
 
 //*********************************************************************
 // 
@@ -47,14 +38,39 @@ typedef struct SHADOW
 // ***** プロトタイプ宣言 *****
 // 
 //*********************************************************************
-void InitShadow(void);
-void UninitShadow(void);
-void UpdateShadow(void);
-void DrawShadow(void);
-int SetShadow(void);
-void SetShadowPosition(int nIdxShadow, D3DXVECTOR3 pos);
-void SetShadowSize(int nIdxShadow, D3DXVECTOR3 size);
-void SetShadowAlpha(int nIdxShadow, float alpha);
-void RemoveShadow(int nIdxShadow);
+void _Read_SCRIPT(FILE* pFile);
 
-#endif
+
+//=====================================================================
+// スクリプト読み込み処理
+//=====================================================================
+void LoadScript(const char* pFileName)
+{
+	FILE* pFile = fopen(pFileName, "r");
+
+	if (pFile != NULL)
+	{
+		char aStrLine[MAX_READABLE_CHAR];
+
+		while (true)
+		{
+			if (fscanf(pFile, "%s", &aStrLine[0]) == EOF)
+			{
+				break;
+			}
+
+			if (strcmp(&aStrLine[0], "SCRIPT") == 0)
+			{
+				OutputDebugString("[script_loader.cpp] Script Start\n");
+			}
+			
+		}
+
+		OutputDebugString("[script_loader.cpp] Script End\n");
+		
+	}
+	else
+	{
+		OutputDebugString("[script_loader.cpp] Script Failed\n");
+	}
+}

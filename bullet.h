@@ -1,11 +1,11 @@
 //=====================================================================
 //
-// shadow.cppのヘッダファイル [shadow.h]
+// bullet.cppのヘッダファイル [bullet.h]
 // Author : 
 // 
 //=====================================================================
-#ifndef _SHADOW_H_
-#define _SHADOW_H_
+#ifndef _BULLET_H_
+#define _BULLET_H_
 
 //*********************************************************************
 // 
@@ -21,19 +21,22 @@
 // ***** マクロ定義 *****
 // 
 //*********************************************************************
-#define MAX_SHADOW		(1024)
+#define MAX_BULLET	(256)
 
 //*********************************************************************
 // 
 // ***** 構造体 *****
 // 
 //*********************************************************************
-typedef struct SHADOW
+typedef struct
 {
 	BASEOBJECT obj;
 	D3DXMATRIX mtxWorld;
+	D3DXVECTOR3 move;
+	int nCounterState;
+	int nIdxShadow;
 	bool bUsed;
-}SHADOW;
+}BULLET;
 
 //*********************************************************************
 // 
@@ -47,14 +50,10 @@ typedef struct SHADOW
 // ***** プロトタイプ宣言 *****
 // 
 //*********************************************************************
-void InitShadow(void);
-void UninitShadow(void);
-void UpdateShadow(void);
-void DrawShadow(void);
-int SetShadow(void);
-void SetShadowPosition(int nIdxShadow, D3DXVECTOR3 pos);
-void SetShadowSize(int nIdxShadow, D3DXVECTOR3 size);
-void SetShadowAlpha(int nIdxShadow, float alpha);
-void RemoveShadow(int nIdxShadow);
+void InitBullet(void);
+void UninitBullet(void);
+void UpdateBullet(void);
+void DrawBullet(void);
+void SetBullet(D3DXVECTOR3 pos, D3DXVECTOR3 move);
 
 #endif

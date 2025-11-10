@@ -1,0 +1,149 @@
+#==============================================================================
+#
+# wƒ‚ƒfƒ‹ƒrƒ…[ƒxƒXƒNƒŠƒvƒgƒtƒ@ƒCƒ‹ [model.txt]
+# Author : AKIRA TANAKA
+#
+#==============================================================================
+#SCRIPT			# ‚±‚Ìs‚Íâ‘ÎÁ‚³‚È‚¢‚±‚ÆI
+
+#------------------------------------------------------------------------------
+# “Ç‚Ýž‚Þƒ‚ƒfƒ‹”
+#------------------------------------------------------------------------------
+NUM_MODEL = 21
+
+#------------------------------------------------------------------------------
+# “Ç‚Ýž‚Þƒ‚ƒfƒ‹ƒtƒ@ƒCƒ‹–¼
+#------------------------------------------------------------------------------
+MODEL_FILENAME = data/MODEL/Road.x
+MODEL_FILENAME = data/MODEL/Seven.x
+MODEL_FILENAME = data/MODEL/Building1.x
+MODEL_FILENAME = data/MODEL/Building2.x
+MODEL_FILENAME = data/MODEL/Building3.x
+MODEL_FILENAME = data/MODEL/Vending_Machine.x
+MODEL_FILENAME = data/MODEL/SmileMan.x
+MODEL_FILENAME = data/MODEL/SmileMan.x
+MODEL_FILENAME = data/MODEL/SmileMan.x
+MODEL_FILENAME = data/MODEL/Road_Lamp.x
+MODEL_FILENAME = data/MODEL/Road_Lamp.x
+MODEL_FILENAME = data/MODEL/Road_Lamp.x
+MODEL_FILENAME = data/MODEL/Road_Lamp.x
+MODEL_FILENAME = data/MODEL/Building1.x
+MODEL_FILENAME = data/MODEL/Truck.x
+MODEL_FILENAME = data/MODEL/SmileMan.x
+MODEL_FILENAME = data/MODEL/SmileMan_G.x
+MODEL_FILENAME = data/MODEL/Station.x
+MODEL_FILENAME = data/MODEL/Building2.x
+MODEL_FILENAME = data/MODEL/Building2.x
+MODEL_FILENAME = data/MODEL/Perfect_Animal.x
+
+
+#------------------------------------------------------------------------------
+# •\Ž¦‚·‚éƒ‚ƒfƒ‹‚Ì”z’uî•ñ
+#------------------------------------------------------------------------------
+MODELSET
+	TYPE = 0			# Ží—Þ
+	POS = 0 0 0			# ˆÊ’u(‚w/‚x/‚y)
+	ROT = 0 0 0			# Œü‚«(‚w/‚x/‚y)
+END_MODELSET
+MODELSET
+	TYPE = 1			# Ží—Þ
+	POS = -75 0 100			# ˆÊ’u(‚w/‚x/‚y)
+	ROT = 0 0 0			# Œü‚«(‚w/‚x/‚y)
+END_MODELSET
+MODELSET
+	TYPE = 2			# Ží—Þ
+	POS = 0 0 80			# ˆÊ’u(‚w/‚x/‚y)
+	ROT = 0 0 0			# Œü‚«(‚w/‚x/‚y)
+END_MODELSET
+MODELSET
+	TYPE = 3			# Ží—Þ
+	POS = 60 0 80			# ˆÊ’u(‚w/‚x/‚y)
+	ROT = 0 0 0			# Œü‚«(‚w/‚x/‚y)
+END_MODELSET
+MODELSET
+	TYPE = 4			# Ží—Þ
+	POS = 80 0 -40			# ˆÊ’u(‚w/‚x/‚y)
+	ROT = 0 0 0			# Œü‚«(‚w/‚x/‚y)
+END_MODELSET
+MODELSET
+	TYPE = 5			# Ží—Þ
+	POS = -60 0 82			# ˆÊ’u(‚w/‚x/‚y)
+	ROT = 0 0 0			# Œü‚«(‚w/‚x/‚y)
+END_MODELSET
+MODELSET
+	TYPE = 6			# Ží—Þ
+	POS = -52 0 78			# ˆÊ’u(‚w/‚x/‚y)
+	ROT = 0 20 0			# Œü‚«(‚w/‚x/‚y)
+END_MODELSET
+MODELSET
+	TYPE = 7			# Ží—Þ
+	POS = -54 13 45			# ˆÊ’u(‚w/‚x/‚y)
+	ROT = 0 5 -80			# Œü‚«(‚w/‚x/‚y)
+END_MODELSET
+MODELSET
+	TYPE = 8			# Ží—Þ
+	POS = -52 0 50			# ˆÊ’u(‚w/‚x/‚y)
+	ROT = -30 50 0			# Œü‚«(‚w/‚x/‚y)
+END_MODELSET
+MODELSET
+	TYPE = 9			# Ží—Þ
+	POS = -14 0 42			# ˆÊ’u(‚w/‚x/‚y)
+	ROT = 0 0 0			# Œü‚«(‚w/‚x/‚y)
+END_MODELSET
+MODELSET
+	TYPE = 10			# Ží—Þ
+	POS = 35 0 42			# ˆÊ’u(‚w/‚x/‚y)
+	ROT = 0 0 0			# Œü‚«(‚w/‚x/‚y)
+END_MODELSET
+MODELSET
+	TYPE = 11			# Ží—Þ
+	POS = 17 0 -2			# ˆÊ’u(‚w/‚x/‚y)
+	ROT = 0 90 0			# Œü‚«(‚w/‚x/‚y)
+END_MODELSET
+MODELSET
+	TYPE = 12			# Ží—Þ
+	POS = -17 0 15			# ˆÊ’u(‚w/‚x/‚y)
+	ROT = 0 -90 0			# Œü‚«(‚w/‚x/‚y)
+END_MODELSET
+MODELSET
+	TYPE = 13			# Ží—Þ
+	POS = 60 0 -115			# ˆÊ’u(‚w/‚x/‚y)
+	ROT = 0 0 0			# Œü‚«(‚w/‚x/‚y)
+END_MODELSET
+MODELSET
+	TYPE = 14			# Ží—Þ
+	POS = 50 0 28			# ˆÊ’u(‚w/‚x/‚y)
+	ROT = 0 90 0			# Œü‚«(‚w/‚x/‚y)
+END_MODELSET
+MODELSET
+	TYPE = 15			# Ží—Þ
+	POS = 23 0 28			# ˆÊ’u(‚w/‚x/‚y)
+	ROT = 0 -10 0			# Œü‚«(‚w/‚x/‚y)
+END_MODELSET
+MODELSET
+	TYPE = 16			# Ží—Þ
+	POS = 0 -1400 -900			# ˆÊ’u(‚w/‚x/‚y)
+	ROT = 0 180 0			# Œü‚«(‚w/‚x/‚y)
+END_MODELSET
+MODELSET
+	TYPE = 17			# Ží—Þ
+	POS = -60 1 -30			# ˆÊ’u(‚w/‚x/‚y)
+	ROT = 0 180 0			# Œü‚«(‚w/‚x/‚y)
+END_MODELSET
+MODELSET
+	TYPE = 18			# Ží—Þ
+	POS = -55 0 -90			# ˆÊ’u(‚w/‚x/‚y)
+	ROT = 0 0 0			# Œü‚«(‚w/‚x/‚y)
+END_MODELSET
+MODELSET
+	TYPE = 19			# Ží—Þ
+	POS = -65 0 -120			# ˆÊ’u(‚w/‚x/‚y)
+	ROT = 0 0 0			# Œü‚«(‚w/‚x/‚y)
+END_MODELSET
+MODELSET
+	TYPE = 20			# Ží—Þ
+	POS = -100 0 60			# ˆÊ’u(‚w/‚x/‚y)
+	ROT = 0 -30 0			# Œü‚«(‚w/‚x/‚y)
+END_MODELSET
+
+END_SCRIPT		# ‚±‚Ìs‚Íâ‘ÎÁ‚³‚È‚¢‚±‚ÆI

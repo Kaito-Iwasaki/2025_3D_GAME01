@@ -55,7 +55,8 @@ void SetVertexRHW(VERTEX_2D* pVtx, float rhw);
 void SetVertexColor(VERTEX_2D* pVtx, D3DXCOLOR col);
 void SetVertexTexturePos(VERTEX_2D* pVtx, bool bInversed = false);
 void SetVertexTexturePos(VERTEX_2D* pVtx, D3DXVECTOR2 leftTop, D3DXVECTOR2 rightTop, D3DXVECTOR2 leftBottom, D3DXVECTOR2 rightBottom, bool bInversed = false);
-void SetVertexTexturePos(VERTEX_2D* pVtx, int nTextureX, int nTextureY, int nSizeX, int nSizeY, bool bInversed);
+void SetVertexTexturePos(VERTEX_2D* pVtx, int nTextureX, int nTextureY, int nSizeX, int nSizeY, bool bInversed = false);
+void SetVertexTexturePos(VERTEX_3D* pVtx, int nTextureX, int nTextureY, int nSizeX, int nSizeY, bool bInversed = false);
 bool IsObjectOutOfScreen(BASEOBJECT obj, DWORD flags = OOS_ALL);
 bool IsObjectOutOfScreen(BASEOBJECT obj, RECT rect, DWORD flags = OOS_ALL);
 

@@ -1,11 +1,11 @@
 //=====================================================================
 //
-// shadow.cppのヘッダファイル [shadow.h]
+// script_loader.cppのヘッダファイル [script_loader.h]
 // Author : 
 // 
 //=====================================================================
-#ifndef _SHADOW_H_
-#define _SHADOW_H_
+#ifndef _SCRIPT_LOADER_H_
+#define _SCRIPT_LOADER_H_
 
 //*********************************************************************
 // 
@@ -13,27 +13,20 @@
 // 
 //*********************************************************************
 #include "main.h"
-#include "baseObject.h"
-#include "util.h"
 
 //*********************************************************************
 // 
 // ***** マクロ定義 *****
 // 
 //*********************************************************************
-#define MAX_SHADOW		(1024)
+
 
 //*********************************************************************
 // 
 // ***** 構造体 *****
 // 
 //*********************************************************************
-typedef struct SHADOW
-{
-	BASEOBJECT obj;
-	D3DXMATRIX mtxWorld;
-	bool bUsed;
-}SHADOW;
+
 
 //*********************************************************************
 // 
@@ -47,14 +40,6 @@ typedef struct SHADOW
 // ***** プロトタイプ宣言 *****
 // 
 //*********************************************************************
-void InitShadow(void);
-void UninitShadow(void);
-void UpdateShadow(void);
-void DrawShadow(void);
-int SetShadow(void);
-void SetShadowPosition(int nIdxShadow, D3DXVECTOR3 pos);
-void SetShadowSize(int nIdxShadow, D3DXVECTOR3 size);
-void SetShadowAlpha(int nIdxShadow, float alpha);
-void RemoveShadow(int nIdxShadow);
+void LoadScript(const char* pFileName);
 
 #endif

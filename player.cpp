@@ -16,6 +16,7 @@
 #include "util.h"
 #include "camera.h"
 #include "shadow.h"
+#include "bullet.h"
 
 //*********************************************************************
 // 
@@ -155,9 +156,12 @@ void UpdatePlayer(void)
 		dir -= D3DXVECTOR3(sinf(pCamera->rot.y), 0.0f, cosf(pCamera->rot.y)) * 1.0f;
 	}
 
-	if (GetKeyboardTrigger(DIK_SPACE))
+	if (GetKeyboardPress(DIK_SPACE))
 	{
-		move.y = 10.0f;
+		SetBullet(
+			g_player.obj.pos + D3DXVECTOR3(0.0f, 10.0f, 0.0f),
+			D3DXVECTOR3(sinf(g_player.obj.rot.y), 0.0f, cosf(g_player.obj.rot.y)) * 10.0f
+		);
 	}
 
 	g_player.obj.pos += dir + move;
