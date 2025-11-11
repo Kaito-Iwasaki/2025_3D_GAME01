@@ -14,6 +14,7 @@
 #include "input.h"
 #include "shadow.h"
 #include "explosion.h"
+#include "effect.h"
 
 //*********************************************************************
 // 
@@ -154,7 +155,7 @@ void UpdateBullet(void)
 	{
 		if (pBullet->bUsed == false) continue;
 
-		if (pBullet->nCounterState > 60)
+		if (pBullet->nCounterState > 60 || abs((long)pBullet->obj.pos.x) > 200.0f || abs((long)pBullet->obj.pos.z) > 200.0f)
 		{
 			pBullet->bUsed = false;
 			RemoveShadow(pBullet->nIdxShadow);
@@ -164,6 +165,7 @@ void UpdateBullet(void)
 
 		pBullet->obj.pos += pBullet->move;
 		SetShadowPosition(pBullet->nIdxShadow, D3DXVECTOR3(pBullet->obj.pos.x, 0.1f, pBullet->obj.pos.z));
+		SetEffect(D3DXVECTOR3(pBullet->obj.pos.x, 0.1f, pBullet->obj.pos.z), D3DXVECTOR3_ZERO);
 
 		pBullet->nCounterState++;
 	}
