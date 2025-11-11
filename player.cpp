@@ -156,7 +156,7 @@ void UpdatePlayer(void)
 		dir -= D3DXVECTOR3(sinf(pCamera->rot.y), 0.0f, cosf(pCamera->rot.y)) * 1.0f;
 	}
 
-	if (GetKeyboardPress(DIK_SPACE))
+	if (GetKeyboardTrigger(DIK_SPACE))
 	{
 		SetBullet(
 			g_player.obj.pos + D3DXVECTOR3(0.0f, 10.0f, 0.0f),

@@ -19,6 +19,8 @@
 #include "billboard.h"
 #include "bullet.h"
 #include "explosion.h"
+#include "effect.h"
+#include "input.h"
 
 //*********************************************************************
 // 
@@ -53,7 +55,7 @@
 // ***** ÉOÉçÅ[ÉoÉãïœêî *****
 // 
 //*********************************************************************
-
+bool g_bIsPaused = false;
 
 //=====================================================================
 // èâä˙âªèàóù
@@ -67,6 +69,9 @@ void InitGame(void)
 	InitBillboard();
 	InitBullet();
 	InitExplosion();
+	InitEffect();
+
+	g_bIsPaused = false;
 
 	LoadScript("data\\model.txt");
 }
@@ -83,6 +88,7 @@ void UninitGame(void)
 	UninitBillboard();
 	UninitBullet();
 	UninitExplosion();
+	UninitEffect();
 }
 
 //=====================================================================
@@ -90,13 +96,22 @@ void UninitGame(void)
 //=====================================================================
 void UpdateGame(void)
 {
-	UpdateField();
-	UpdateWall();
-	UpdatePlayer();
-	UpdateShadow();
-	UpdateBillboard();
-	UpdateBullet();
-	UpdateExplosion();
+	if (GetKeyboardTrigger(DIK_P))
+	{
+		g_bIsPaused ^= 1;
+	}
+
+	if (g_bIsPaused == false)
+	{
+		UpdateField();
+		UpdateWall();
+		UpdatePlayer();
+		UpdateShadow();
+		UpdateBillboard();
+		UpdateBullet();
+		UpdateExplosion();
+		UpdateEffect();
+	}
 }
 
 //=====================================================================
@@ -111,4 +126,5 @@ void DrawGame(void)
 	DrawBillboard();
 	DrawBullet();
 	DrawExplosion();
+	DrawEffect();
 }

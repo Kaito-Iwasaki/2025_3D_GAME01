@@ -54,11 +54,11 @@ CAMERA g_camera;
 //=====================================================================
 void InitCamera(void)
 {
-	g_camera.posV = D3DXVECTOR3(0.0f, 100.0f, -200.0f);
-	g_camera.posR = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
+	g_camera.posV = D3DXVECTOR3_ZERO;
+	g_camera.posR = D3DXVECTOR3(0.0f, 10.0f, 0.0f);
 	g_camera.vecU = D3DXVECTOR3(0.0f, 1.0f, 0.0f);
 	g_camera.fDistanceFromVToR = 200.0f;
-	g_camera.rot = D3DXVECTOR3_ZERO;
+	g_camera.rot = D3DXVECTOR3(D3DXToRadian(30), 0.0f, 0.0f);
 
 	g_camera.posV.x = g_camera.posR.x + cosf(g_camera.rot.x) * sinf(g_camera.rot.y + D3DX_PI) * g_camera.fDistanceFromVToR;
 	g_camera.posV.z = g_camera.posR.z + cosf(g_camera.rot.x) * cosf(g_camera.rot.y + D3DX_PI) * g_camera.fDistanceFromVToR;
@@ -115,10 +115,10 @@ void UpdateCamera(void)
 			cosf(g_camera.rot.y + D3DX_PI)
 		) * CAMERA_SPEED;
 
-		g_camera.posR -= D3DXVECTOR3(
-			sinf(g_camera.rot.y + D3DX_PI),
+		g_camera.posR += D3DXVECTOR3(
+			sinf(g_camera.rot.y),
 			0.0f,
-			cosf(g_camera.rot.y + D3DX_PI)
+			cosf(g_camera.rot.y)
 		) * CAMERA_SPEED;
 	}
 	if (GetKeyboardPress(DIK_S))
@@ -160,28 +160,32 @@ void UpdateCamera(void)
 	if (GetKeyboardPress(DIK_Q))
 	{
 		g_camera.rot.y -= 0.05f;
-		g_camera.posR.x = g_camera.posV.x + sinf(g_camera.rot.y) * g_camera.fDistanceFromVToR;
-		g_camera.posR.z = g_camera.posV.z + cosf(g_camera.rot.y) * g_camera.fDistanceFromVToR;
+		g_camera.posR.x = g_camera.posV.x + cosf(g_camera.rot.x + D3DX_PI) * sinf(g_camera.rot.y + D3DX_PI) * g_camera.fDistanceFromVToR;
+		g_camera.posR.z = g_camera.posV.z + cosf(g_camera.rot.x + D3DX_PI) * cosf(g_camera.rot.y + D3DX_PI) * g_camera.fDistanceFromVToR;
+		g_camera.posR.y = g_camera.posV.y + sinf(g_camera.rot.x + D3DX_PI) * g_camera.fDistanceFromVToR;
 	}
 	if (GetKeyboardPress(DIK_E))
 	{
 		g_camera.rot.y += 0.05f;
-		g_camera.posR.x = g_camera.posV.x + sinf(g_camera.rot.y) * g_camera.fDistanceFromVToR;
-		g_camera.posR.z = g_camera.posV.z + cosf(g_camera.rot.y) * g_camera.fDistanceFromVToR;
+		g_camera.posR.x = g_camera.posV.x + cosf(g_camera.rot.x + D3DX_PI) * sinf(g_camera.rot.y + D3DX_PI) * g_camera.fDistanceFromVToR;
+		g_camera.posR.z = g_camera.posV.z + cosf(g_camera.rot.x + D3DX_PI) * cosf(g_camera.rot.y + D3DX_PI) * g_camera.fDistanceFromVToR;
+		g_camera.posR.y = g_camera.posV.y + sinf(g_camera.rot.x + D3DX_PI) * g_camera.fDistanceFromVToR;
 	}
 
 	// [ƒJƒƒ‰Ž‹“_]¶‰E‰ñ“]
 	if (GetKeyboardPress(DIK_Z))
 	{
-		g_camera.rot.y -= 0.05f;
-		g_camera.posV.x = g_camera.posR.x + sinf(g_camera.rot.y + D3DX_PI) * g_camera.fDistanceFromVToR;
-		g_camera.posV.z = g_camera.posR.z + cosf(g_camera.rot.y + D3DX_PI) * g_camera.fDistanceFromVToR;
+		g_camera.rot.y += 0.05f;
+		g_camera.posV.x = g_camera.posR.x + cosf(g_camera.rot.x) * sinf(g_camera.rot.y + D3DX_PI) * g_camera.fDistanceFromVToR;
+		g_camera.posV.z = g_camera.posR.z + cosf(g_camera.rot.x) * cosf(g_camera.rot.y + D3DX_PI) * g_camera.fDistanceFromVToR;
+		g_camera.posV.y = g_camera.posR.y + sinf(g_camera.rot.x) * g_camera.fDistanceFromVToR;
 	}
 	if (GetKeyboardPress(DIK_C))
 	{
-		g_camera.rot.y += 0.05f;
-		g_camera.posV.x = g_camera.posR.x + sinf(g_camera.rot.y + D3DX_PI) * g_camera.fDistanceFromVToR;
-		g_camera.posV.z = g_camera.posR.z + cosf(g_camera.rot.y + D3DX_PI) * g_camera.fDistanceFromVToR;
+		g_camera.rot.y -= 0.05f;
+		g_camera.posV.x = g_camera.posR.x + cosf(g_camera.rot.x) * sinf(g_camera.rot.y + D3DX_PI) * g_camera.fDistanceFromVToR;
+		g_camera.posV.z = g_camera.posR.z + cosf(g_camera.rot.x) * cosf(g_camera.rot.y + D3DX_PI) * g_camera.fDistanceFromVToR;
+		g_camera.posV.y = g_camera.posR.y + sinf(g_camera.rot.x) * g_camera.fDistanceFromVToR;
 	}
 
 	if (GetKeyboardPress(DIK_U))
@@ -197,10 +201,10 @@ void UpdateCamera(void)
 		g_camera.posV.z = g_camera.posR.z + cosf(g_camera.rot.y + D3DX_PI) * g_camera.fDistanceFromVToR;
 	}
 
+	DIMOUSESTATE mouse = GetMouse();
+
 	if (GetMousePress(MOUSE_LEFT))
 	{
-		DIMOUSESTATE mouse = GetMouse();
-
 		g_camera.rot.y = GetFixedRotation(g_camera.rot.y + mouse.lX * 0.01f);
 		g_camera.rot.x = Clampf(GetFixedRotation(g_camera.rot.x + mouse.lY * 0.01f), -D3DX_PI / 2 + 0.1f, D3DX_PI / 2 - 0.1f);
 
@@ -210,14 +214,29 @@ void UpdateCamera(void)
 	}
 	if (GetMousePress(MOUSE_RIGHT))
 	{
-		DIMOUSESTATE mouse = GetMouse();
-
 		g_camera.rot.y = GetFixedRotation(g_camera.rot.y + mouse.lX * 0.01f);
 		g_camera.rot.x = Clampf(GetFixedRotation(g_camera.rot.x + mouse.lY * 0.01f), -D3DX_PI / 2 + 0.1f, D3DX_PI / 2 - 0.1f);
 
 		g_camera.posR.x = g_camera.posV.x + cosf(g_camera.rot.x + D3DX_PI) * sinf(g_camera.rot.y + D3DX_PI) * g_camera.fDistanceFromVToR;
 		g_camera.posR.z = g_camera.posV.z + cosf(g_camera.rot.x + D3DX_PI) * cosf(g_camera.rot.y + D3DX_PI) * g_camera.fDistanceFromVToR;
 		g_camera.posR.y = g_camera.posV.y + sinf(g_camera.rot.x + D3DX_PI) * g_camera.fDistanceFromVToR;
+	}
+
+	if (mouse.lZ >= 120)
+	{
+		g_camera.fDistanceFromVToR -= 50.0f;
+		Clampf(&g_camera.fDistanceFromVToR, 50.0f, 400.0f);
+		g_camera.posV.x = g_camera.posR.x + cosf(g_camera.rot.x) * sinf(g_camera.rot.y + D3DX_PI) * g_camera.fDistanceFromVToR;
+		g_camera.posV.z = g_camera.posR.z + cosf(g_camera.rot.x) * cosf(g_camera.rot.y + D3DX_PI) * g_camera.fDistanceFromVToR;
+		g_camera.posV.y = g_camera.posR.y + sinf(g_camera.rot.x) * g_camera.fDistanceFromVToR;
+	}
+	else if (mouse.lZ <= -120)
+	{
+		g_camera.fDistanceFromVToR += 50.0f;
+		Clampf(&g_camera.fDistanceFromVToR, 50.0f, 400.0f);
+		g_camera.posV.x = g_camera.posR.x + cosf(g_camera.rot.x) * sinf(g_camera.rot.y + D3DX_PI) * g_camera.fDistanceFromVToR;
+		g_camera.posV.z = g_camera.posR.z + cosf(g_camera.rot.x) * cosf(g_camera.rot.y + D3DX_PI) * g_camera.fDistanceFromVToR;
+		g_camera.posV.y = g_camera.posR.y + sinf(g_camera.rot.x) * g_camera.fDistanceFromVToR;
 	}
 
 	if (GetKeyboardPress(DIK_RETURN))
