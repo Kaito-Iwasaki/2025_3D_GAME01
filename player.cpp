@@ -70,7 +70,7 @@ void InitPlayer(void)
 
 	// XÉtÉ@ÉCÉãÇÃì«Ç›çûÇ›
 	D3DXLoadMeshFromX(
-		"data\\MODEL\\SmileMan.x",
+		"data\\MODEL\\Perfect_Animal.x",
 		D3DXMESH_SYSTEMMEM,
 		pDevice,
 		NULL,
@@ -137,6 +137,9 @@ void UpdatePlayer(void)
 
 	static D3DXVECTOR3 move = D3DXVECTOR3_ZERO;
 	D3DXVECTOR3 dir = D3DXVECTOR3_ZERO;
+	D3DXVECTOR3 dirPad = D3DXVECTOR3_ZERO;
+
+	
 
 	g_player.posOld = g_player.obj.pos;
 
