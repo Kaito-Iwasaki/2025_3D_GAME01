@@ -345,7 +345,7 @@ HRESULT Init(HINSTANCE hInstance, HWND hWnd, BOOL bWindowed)
 	}
 
 	// サウンドの初期化処理
-	//InitSound(hWnd);
+	InitSound(hWnd);
 
 	InitCamera();
 
@@ -370,7 +370,7 @@ void Uninit(void)
 	UninitCamera();
 
 	// サウンドの終了処理
-	//UninitSound();
+	UninitSound();
 
 	// キーボードの終了処理
 	UninitKeyboard();

@@ -17,6 +17,7 @@
 #include "camera.h"
 #include "shadow.h"
 #include "bullet.h"
+#include "sound.h"
 
 //*********************************************************************
 // 
@@ -162,6 +163,7 @@ void UpdatePlayer(void)
 			g_player.obj.pos + D3DXVECTOR3(0.0f, 10.0f, 0.0f),
 			D3DXVECTOR3(sinf(g_player.obj.rot.y), 0.0f, cosf(g_player.obj.rot.y)) * 10.0f
 		);
+		PlaySound(SOUND_LABEL_SE_SHOOT);
 	}
 
 	g_player.obj.pos += dir + move;

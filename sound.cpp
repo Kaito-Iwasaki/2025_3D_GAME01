@@ -32,7 +32,9 @@ BYTE *g_apDataAudio[SOUND_LABEL_MAX] = {};					// オーディオデータ
 DWORD g_aSizeAudio[SOUND_LABEL_MAX] = {};					// オーディオデータサイズ
 
 // サウンドの情報
-SOUNDINFO g_aSoundInfo[SOUND_LABEL_MAX] = {};
+SOUNDINFO g_aSoundInfo[SOUND_LABEL_MAX] = {
+	{"data\\SE\\shoot.wav"},
+};
 
 //=============================================================================
 // 初期化処理
