@@ -225,7 +225,7 @@ void UpdateCamera(void)
 	if (mouse.lZ >= 120)
 	{
 		g_camera.fDistanceFromVToR -= 50.0f;
-		Clampf(&g_camera.fDistanceFromVToR, 50.0f, 400.0f);
+		Clampf(&g_camera.fDistanceFromVToR, 100.0f, 400.0f);
 		g_camera.posV.x = g_camera.posR.x + cosf(g_camera.rot.x) * sinf(g_camera.rot.y + D3DX_PI) * g_camera.fDistanceFromVToR;
 		g_camera.posV.z = g_camera.posR.z + cosf(g_camera.rot.x) * cosf(g_camera.rot.y + D3DX_PI) * g_camera.fDistanceFromVToR;
 		g_camera.posV.y = g_camera.posR.y + sinf(g_camera.rot.x) * g_camera.fDistanceFromVToR;
@@ -233,7 +233,7 @@ void UpdateCamera(void)
 	else if (mouse.lZ <= -120)
 	{
 		g_camera.fDistanceFromVToR += 50.0f;
-		Clampf(&g_camera.fDistanceFromVToR, 50.0f, 400.0f);
+		Clampf(&g_camera.fDistanceFromVToR, 100.0f, 400.0f);
 		g_camera.posV.x = g_camera.posR.x + cosf(g_camera.rot.x) * sinf(g_camera.rot.y + D3DX_PI) * g_camera.fDistanceFromVToR;
 		g_camera.posV.z = g_camera.posR.z + cosf(g_camera.rot.x) * cosf(g_camera.rot.y + D3DX_PI) * g_camera.fDistanceFromVToR;
 		g_camera.posV.y = g_camera.posR.y + sinf(g_camera.rot.x) * g_camera.fDistanceFromVToR;

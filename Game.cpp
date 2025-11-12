@@ -21,6 +21,7 @@
 #include "explosion.h"
 #include "effect.h"
 #include "input.h"
+#include "model.h"
 
 //*********************************************************************
 // 
@@ -56,12 +57,14 @@
 // 
 //*********************************************************************
 bool g_bIsPaused = false;
+SCRIPTDATA g_data;
 
 //=====================================================================
 // èâä˙âªèàóù
 //=====================================================================
 void InitGame(void)
 {
+
 	InitField();
 	InitWall();
 	InitShadow();
@@ -70,10 +73,11 @@ void InitGame(void)
 	InitBullet();
 	InitExplosion();
 	InitEffect();
+	InitModel();
 
 	g_bIsPaused = false;
 
-	LoadScript("data\\model.txt");
+	LoadScript("data\\model.txt", &g_data);
 }
 
 //=====================================================================
@@ -89,6 +93,7 @@ void UninitGame(void)
 	UninitBullet();
 	UninitExplosion();
 	UninitEffect();
+	UninitModel();
 }
 
 //=====================================================================
@@ -111,6 +116,7 @@ void UpdateGame(void)
 		UpdateBullet();
 		UpdateExplosion();
 		UpdateEffect();
+		UpdateModel();
 	}
 }
 
@@ -127,4 +133,5 @@ void DrawGame(void)
 	DrawBullet();
 	DrawExplosion();
 	DrawEffect();
+	DrawModel();
 }

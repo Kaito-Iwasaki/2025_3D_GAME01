@@ -20,7 +20,7 @@
 // 
 //*********************************************************************
 #define MAX_LOADBLE_TEXTURE		(256)
-#define MAX_LOADBLE_MODEL		(1024)
+#define MAX_LOADBLE_MODEL		(256)
 
 //*********************************************************************
 // 
@@ -33,9 +33,16 @@ typedef struct
 	char aFilenameTexture[MAX_LOADBLE_TEXTURE][MAX_PATH];
 
 	int nNumModel;
-	char aFilenameTexture[MAX_LOADBLE_TEXTURE][MAX_PATH];
+	char aFilenameModel[MAX_LOADBLE_MODEL][MAX_PATH];
 	
 }SCRIPTDATA;
+
+typedef struct
+{
+	int nType;
+	D3DXVECTOR3 pos;
+	D3DXVECTOR3 rot;
+}MODELSETDATA;
 
 //*********************************************************************
 // 
@@ -49,6 +56,6 @@ typedef struct
 // ***** プロトタイプ宣言 *****
 // 
 //*********************************************************************
-void LoadScript(const char* pFileName);
+void LoadScript(const char* pFileName, SCRIPTDATA* pBuffer);
 
 #endif
