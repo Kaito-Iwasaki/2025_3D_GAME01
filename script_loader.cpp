@@ -138,10 +138,7 @@ void _Read_SCRIPT(FILE* pFile, SCRIPTDATA** ppBuffer)
 				}
 				else if (strcmp(&aStrLine[0], "POS") == 0)
 				{
-					//fscanf(pFile, " = %f %f %f", &data.pos.x, &data.pos.y, &data.pos.z);
-					fscanf(pFile, " = %f", &data.pos.x);
-					fscanf(pFile, "%f", &data.pos.y);
-					fscanf(pFile, "%f", &data.pos.z);
+					fscanf(pFile, " = %f %f %f", &data.pos.x, &data.pos.y, &data.pos.z);
 				}
 				else if (strcmp(&aStrLine[0], "ROT") == 0)
 				{

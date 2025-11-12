@@ -182,7 +182,7 @@ void SetModel(const char* pFilename, D3DXVECTOR3 pos, D3DXVECTOR3 rot)
 		pModel->obj.rot = rot;
 
 		// Xファイルの読み込み
-		D3DXLoadMeshFromX(
+		HRESULT hr = D3DXLoadMeshFromX(
 			pFilename,
 			D3DXMESH_SYSTEMMEM,
 			pDevice,
@@ -192,6 +192,12 @@ void SetModel(const char* pFilename, D3DXVECTOR3 pos, D3DXVECTOR3 rot)
 			&pModel->dwNumMat,
 			&pModel->pMesh
 		);
+		if FAILED(hr)
+		{
+			MessageBox(GetMainWindow(), "ヤバい（モデルが）", "え？", MB_ICONERROR);
+			DestroyWindow(GetMainWindow());
+			break;
+		}
 
 		D3DXMATERIAL* pMat;
 
