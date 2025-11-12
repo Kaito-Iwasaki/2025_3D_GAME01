@@ -1,11 +1,11 @@
 //=====================================================================
 //
-// script_loader.cppのヘッダファイル [script_loader.h]
+// model.cppのヘッダファイル [model.h]
 // Author : 
 // 
 //=====================================================================
-#ifndef _SCRIPT_LOADER_H_
-#define _SCRIPT_LOADER_H_
+#ifndef _MODEL_H_
+#define _MODEL_H_
 
 //*********************************************************************
 // 
@@ -13,14 +13,14 @@
 // 
 //*********************************************************************
 #include "main.h"
+#include "baseObject.h"
 
 //*********************************************************************
 // 
 // ***** マクロ定義 *****
 // 
 //*********************************************************************
-#define MAX_LOADBLE_TEXTURE		(256)
-#define MAX_LOADBLE_MODEL		(1024)
+#define MAX_TEXTURE		(8)
 
 //*********************************************************************
 // 
@@ -29,13 +29,13 @@
 //*********************************************************************
 typedef struct
 {
-	int nNumTexture;
-	char aFilenameTexture[MAX_LOADBLE_TEXTURE][MAX_PATH];
-
-	int nNumModel;
-	char aFilenameTexture[MAX_LOADBLE_TEXTURE][MAX_PATH];
-	
-}SCRIPTDATA;
+	BASEOBJECT obj;
+	D3DXMATRIX mtxWorld;
+	LPD3DXMESH pMesh;
+	LPDIRECT3DTEXTURE9 apTexture[MAX_TEXTURE];
+	LPD3DXBUFFER pBuffMat;
+	DWORD dwNumMatPlayer;
+}MODEL;
 
 //*********************************************************************
 // 
@@ -49,6 +49,9 @@ typedef struct
 // ***** プロトタイプ宣言 *****
 // 
 //*********************************************************************
-void LoadScript(const char* pFileName);
+void InitModel(void);
+void UninitModel(void);
+void UpdateModel(void);
+void DrawModel(void);
 
 #endif

@@ -155,6 +155,10 @@
     <ClCompile Include="input.cpp" />
     <ClCompile Include="light.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="model.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="player.cpp" />
     <ClCompile Include="field.cpp" />
     <ClCompile Include="scene.cpp" />
@@ -178,6 +182,10 @@
     <ClInclude Include="input.h" />
     <ClInclude Include="light.h" />
     <ClInclude Include="main.h" />
+    <ClInclude Include="model.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="player.h" />
     <ClInclude Include="field.h" />
     <ClInclude Include="scene.h" />
